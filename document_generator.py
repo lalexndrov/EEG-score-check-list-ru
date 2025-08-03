@@ -69,24 +69,58 @@ class DocumentGenerator:
         """
         Fill Word template with data by replacing placeholders
         
-        Placeholders format: {{field_name}}
+        Placeholders format: {{field_name}} and {% if field %}...{% endif %}
         """
-        # Replace placeholders in paragraphs
+        # Process paragraphs
         for paragraph in doc.paragraphs:
             self._replace_placeholders_in_paragraph(paragraph, data)
         
-        # Replace placeholders in tables
+        # Process tables
         for table in doc.tables:
             for row in table.rows:
                 for cell in row.cells:
                     for paragraph in cell.paragraphs:
                         self._replace_placeholders_in_paragraph(paragraph, data)
+        
+        # Second pass: clean up any remaining conditional syntax
+        self._cleanup_remaining_conditionals(doc)
+    
+    def _cleanup_remaining_conditionals(self, doc):
+        """Remove any remaining conditional syntax that wasn't processed"""
+        import re
+        
+        # Pattern to match any remaining conditional syntax
+        cleanup_pattern = r'{%.*?%}'
+        
+        # Clean paragraphs
+        for paragraph in doc.paragraphs:
+            if re.search(cleanup_pattern, paragraph.text):
+                cleaned_text = re.sub(cleanup_pattern, '', paragraph.text, flags=re.DOTALL)
+                cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+                paragraph.clear()
+                if cleaned_text:
+                    paragraph.add_run(cleaned_text)
+        
+        # Clean tables
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    for paragraph in cell.paragraphs:
+                        if re.search(cleanup_pattern, paragraph.text):
+                            cleaned_text = re.sub(cleanup_pattern, '', paragraph.text, flags=re.DOTALL)
+                            cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+                            paragraph.clear()
+                            if cleaned_text:
+                                paragraph.add_run(cleaned_text)
     
     def _replace_placeholders_in_paragraph(self, paragraph, data):
-        """Replace placeholders in a single paragraph"""
+        """Replace placeholders and conditional statements in a single paragraph"""
         full_text = paragraph.text
         
-        # Find and replace all placeholders
+        # Process conditional statements first ({% if condition %}...{% else %}...{% endif %})
+        full_text = self._process_conditional_statements(full_text, data)
+        
+        # Find and replace all simple placeholders
         for key, value in data.items():
             placeholder = f"{{{{{key}}}}}"
             if placeholder in full_text:
@@ -96,6 +130,64 @@ class DocumentGenerator:
         if full_text != paragraph.text:
             paragraph.clear()
             paragraph.add_run(full_text)
+    
+    def _process_conditional_statements(self, text, data):
+        """Process conditional statements in text"""
+        import re
+        
+        # Clean up text - remove extra whitespaces and normalize line breaks
+        text = re.sub(r'\s+', ' ', text)
+        
+        # Pattern for conditional statements: {% if condition %}content{% else %}alt_content{% endif %}
+        # Made more flexible to handle whitespace and line breaks
+        pattern = r'{%\s*if\s+(\w+)\s*%}(.*?){%\s*else\s*%}(.*?){%\s*endif\s*%}'
+        
+        def replace_conditional(match):
+            condition_field = match.group(1)
+            true_content = match.group(2).strip()
+            false_content = match.group(3).strip()
+            
+            # Check if condition field exists and is truthy
+            condition_value = data.get(condition_field, False)
+            
+            # Handle different types of truthy values
+            if isinstance(condition_value, bool):
+                is_true = condition_value
+            elif isinstance(condition_value, str):
+                is_true = condition_value.lower() not in ['', 'false', 'no', 'нет', '0']
+            elif isinstance(condition_value, (int, float)):
+                is_true = condition_value != 0
+            else:
+                is_true = bool(condition_value)
+            
+            return true_content if is_true else false_content
+        
+        # Replace all conditional statements with else
+        result = re.sub(pattern, replace_conditional, text, flags=re.DOTALL | re.MULTILINE)
+        
+        # Handle simpler conditional pattern without else: {% if condition %}content{% endif %}
+        simple_pattern = r'{%\s*if\s+(\w+)\s*%}(.*?){%\s*endif\s*%}'
+        
+        def replace_simple_conditional(match):
+            condition_field = match.group(1)
+            content = match.group(2).strip()
+            
+            condition_value = data.get(condition_field, False)
+            
+            if isinstance(condition_value, bool):
+                is_true = condition_value
+            elif isinstance(condition_value, str):
+                is_true = condition_value.lower() not in ['', 'false', 'no', 'нет', '0']
+            elif isinstance(condition_value, (int, float)):
+                is_true = condition_value != 0
+            else:
+                is_true = bool(condition_value)
+            
+            return content if is_true else ''
+        
+        result = re.sub(simple_pattern, replace_simple_conditional, result, flags=re.DOTALL | re.MULTILINE)
+        
+        return result
     
     def _create_word_document_from_scratch(self, data):
         """Create a new Word document from scratch"""
