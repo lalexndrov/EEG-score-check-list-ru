@@ -1,0 +1,67 @@
+{
+  "patient_id": "идентификатор_пациента",
+  "patient_age": "возраст_пациента",
+  "patient_sex": "пол_пациента",
+  "study_id": "идентификатор_исследования",
+  "study_date": "дата_исследования",
+  "indication": "показание",
+  "state": "состояние",
+
+  "background": {
+    "symmetry": "симметрия",
+    "predominant_frequency": "преобладающая_частота",
+    "anterior_posterior_gradient": "передне_задний_градиент",
+    "variability": "вариабельность",
+    "reactivity": "реактивность",
+    "voltage": "амплитуда",
+    "organization": "организация",
+    "continuity": "непрерывность"
+  },
+
+  "sporadic_epileptiform_discharges": {
+    "present": "наличие",
+    "frequency": "частота_в_мин",
+    "abundance": "обилие",
+    "polarity": "полярность",
+    "sharpness": "острота",
+    "location": "локализация_активности",
+    "localization": "региональная_локализация"
+  },
+
+  "rhythmic_periodic_patterns": {
+    "main_term1": "основной_термин1",
+    "main_term2": "основной_термин2",
+    "frequency": "частота_Гц",
+    "prevalence": "преобладание",
+    "duration": "длительность_с",
+    "number_of_phases": "число_фаз",
+    "evolution": "эволюция",
+    "modifiers": {
+      "sharpness": "острота",
+      "polarity": "полярность",
+      "plus_features": "плюс_черты"
+    },
+    "location": "локализация"
+  },
+
+  "electrographic_seizures": {
+    "present": "наличие",
+    "pattern_type": "тип_паттерна",
+    "clinical_correlation": "клиническая_корреляция"
+  },
+
+  "BIRDs": {
+    "present": "наличие",
+    "description": "описание"
+  },
+
+  "ictal_interictal_continuum": {
+    "classification": "классификация"
+  },
+
+  "impression": "впечатление",
+  "conclusion": "заключение",
+  "recommendations": "рекомендации",
+  "reporting_clinician": "специалист",
+  "report_date": "дата_отчета"
+}

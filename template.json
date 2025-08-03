@@ -1,0 +1,69 @@
+{
+  "patient_id": "",
+  "patient_age": null,
+  "patient_sex": "",
+  "study_id": "",
+  "study_date": "",
+  "indication": "",
+  "state": "",
+
+  "background": {
+    "symmetry": "",              // symmetric / mild asymmetry / marked asymmetry
+    "predominant_frequency": "", // alpha / beta / theta / delta
+    "anterior_posterior_gradient": "", 
+    "variability": "",
+    "reactivity": "",           // present / absent
+    "voltage": "",              // low / normal / high
+    "organization": "",         // normal / disrupted
+    "continuity": ""            // continuous / discontinuous / suppression / burst‑suppression
+  },
+
+  "sporadic_epileptiform_discharges": {
+    "present": false,
+    "frequency": null,          // number per minute
+    "abundance": "",            // rare / occasional / frequent / abundant
+    "polarity": "",             // negative / positive / biphasic
+    "sharpness": "",
+    "location": "",
+    "localization": ""          // e.g. L temporal, generalized
+  },
+
+  "rhythmic_periodic_patterns": [
+    {
+      "main_term1": "",        // G / L / BI / Mf
+      "main_term2": "",        // PDs / RDA / SW
+      "frequency": null,       // in Hz
+      "prevalence": "",        // percentage or “>80% consistent”
+      "duration": null,        // seconds
+      "number_of_phases": null,
+      "evolution": "",         // evolving / fluctuating / static
+      "modifiers": {
+        "sharpness": "",
+        "polarity": "",
+        "plus_features": ""    // +, +F, +R, +S
+      },
+      "location": ""
+    }
+  ],
+
+  "electrographic_seizures": {
+    "present": false,
+    "pattern_type": "",        // seizure pattern description
+    "clinical_correlation": false
+  },
+
+  "BIRDs": {
+    "present": false,
+    "description": ""
+  },
+
+  "ictal_interictal_continuum": {
+    "classification": ""       // IIC categories
+  },
+
+  "impression": "",
+  "conclusion": "",
+  "recommendations": "",
+  "reporting_clinician": "",
+  "report_date": ""
+}

@@ -1,0 +1,23 @@
+# Dynamic EEG Form Generator - Python Dependencies
+
+# Core GUI Framework (usually included with Python)
+# tkinter - Built-in with Python, no installation needed
+
+# Document Generation Libraries
+python-docx>=0.8.11
+reportlab>=4.0.0
+
+# Optional: Enhanced font support for PDFs
+# Pillow>=9.0.0
+
+# Development and Testing (optional)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+
+# Data Handling (built-in with Python)
+# json - Built-in module
+# datetime - Built-in module
+# os - Built-in module
+
+# Note: This project is designed to work with minimal dependencies
+# Only python-docx and reportlab are required for full functionality

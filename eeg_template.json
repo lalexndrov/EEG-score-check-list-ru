@@ -1,0 +1,178 @@
+{
+  "form_title": " EEG Score Checklist Ru (inspired by ACNS Terminology)",
+  "window_config": {
+    "width": 800,
+    "height": 900
+  },
+  "sections": [
+    {
+      "id": "patient_info",
+      "title": "1. Пациент и исследование",
+      "fields": [
+        {
+          "id": "patient_name",
+          "label": "ФИО пациента:",
+          "type": "text",
+          "default": "",
+          "required": true
+        },
+        {
+          "id": "patient_age",
+          "label": "Возраст:",
+          "type": "number",
+          "default": "",
+          "required": true
+        },
+        {
+          "id": "patient_sex",
+          "label": "Пол:",
+          "type": "select",
+          "options": ["Муж", "Жен"],
+          "default": "Муж",
+          "required": true
+        },
+        {
+          "id": "study_date",
+          "label": "Дата исследования:",
+          "type": "date",
+          "default": "today",
+          "required": true
+        },
+        {
+          "id": "indication",
+          "label": "Показания:",
+          "type": "text",
+          "default": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "background_activity",
+      "title": "2. Фоновая активность",
+      "fields": [
+        {
+          "id": "symmetry",
+          "label": "Симметрия:",
+          "type": "select",
+          "options": ["Симметричная", "Умеренная асимметрия", "Выраженная асимметрия"],
+          "default": "Симметричная",
+          "required": true
+        },
+        {
+          "id": "predominant_frequency",
+          "label": "Преобладающая частота:",
+          "type": "select",
+          "options": ["Альфа", "Бета", "Тета", "Дельта"],
+          "default": "Альфа",
+          "required": true
+        },
+        {
+          "id": "reactivity",
+          "label": "Реактивность:",
+          "type": "select",
+          "options": ["Присутствует", "Отсутствует"],
+          "default": "Присутствует",
+          "required": true
+        },
+        {
+          "id": "organization",
+          "label": "Организация:",
+          "type": "select",
+          "options": ["Организована", "Дезорганизована"],
+          "default": "Организована",
+          "required": true
+        },
+        {
+          "id": "continuity",
+          "label": "Непрерывность:",
+          "type": "select",
+          "options": ["Непрерывная", "Прерывистая", "Супрессия", "Burst-suppression"],
+          "default": "Непрерывная",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "epileptiform_activity",
+      "title": "3. Эпилептиформная активность",
+      "fields": [
+        {
+          "id": "epileptiform_present",
+          "label": "Присутствует",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        },
+        {
+          "id": "epileptiform_frequency",
+          "label": "Частота (раз/мин):",
+          "type": "number",
+          "default": "",
+          "required": false
+        },
+        {
+          "id": "epileptiform_location",
+          "label": "Локализация:",
+          "type": "text",
+          "default": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "provocation_responses",
+      "title": "4. Реакции на провокации",
+      "fields": [
+        {
+          "id": "hv_response",
+          "label": "Гипервентиляция:",
+          "type": "select",
+          "options": ["Без изменений", "Замедление", "Спайки"],
+          "default": "Без изменений",
+          "required": true
+        },
+        {
+          "id": "photo_response",
+          "label": "Фотостимуляция:",
+          "type": "select",
+          "options": ["Нормальный фотоответ", "Фото-пароксизм", "Без ответа"],
+          "default": "Нормальный фотоответ",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "conclusion",
+      "title": "5. Заключение",
+      "fields": [
+        {
+          "id": "impression",
+          "label": "Текст заключения:",
+          "type": "textarea",
+          "default": "",
+          "required": false,
+          "height": 4
+        }
+      ]
+    }
+  ],
+  "buttons": [
+    {
+      "text": "Сгенерировать JSON",
+      "action": "generate_json"
+    },
+    {
+      "text": "Очистить форму",
+      "action": "clear_form"
+    },
+    {
+      "text": "Сохранить в файл",
+      "action": "save_to_file"
+    }
+  ],
+  "output_section": {
+    "title": "📦 JSON Результат",
+    "height": 10
+  }
+}
