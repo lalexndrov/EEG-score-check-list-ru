@@ -234,7 +234,28 @@ pip install python-docx reportlab
 
 ## License
 
-This project is provided as-is for educational and professional use.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+### License Summary
+- ✅ **Freedom to use** - Use the software for any purpose
+- ✅ **Freedom to study** - Examine and modify the source code
+- ✅ **Freedom to share** - Redistribute copies of the software
+- ✅ **Freedom to improve** - Distribute modified versions
+
+### Important Notes
+- **Copyleft**: Any derivative works must also be licensed under GPL-3.0
+- **Source code**: Must be made available when distributing the software
+- **No warranty**: See warranty disclaimer below
+
+For the full license text, see: https://www.gnu.org/licenses/gpl-3.0.html
+
+## Warranty Disclaimer
+
+**THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.**
+
+**IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.**
+
+Users assume all risks associated with the use of this software. The developers make no representations or warranties about the suitability, reliability, availability, timeliness, or accuracy of the software or the information contained therein.
 
 ## Contributing
 
